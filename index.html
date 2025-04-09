@@ -11,13 +11,11 @@
       background-size: 400% 400%;
       animation: gradientAnimation 15s ease infinite;
     }
-
     @keyframes gradientAnimation {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-
     .tile {
       background: rgba(255, 255, 255, 0.1);
       border-radius: 20px;
@@ -27,24 +25,20 @@
       backdrop-filter: blur(5px);
       transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
     }
-
     .tile:hover {
       transform: perspective(1000px) rotateY(10deg) rotateX(10deg);
       box-shadow: 0 15px 60px rgba(255, 0, 0, 0.6);
       filter: brightness(1.2);
     }
-
     .tile img {
       border-radius: 15px;
       max-height: 220px;
       object-fit: cover;
       transition: transform 0.3s ease;
     }
-
     .tile:hover img {
       transform: scale(1.05);
     }
-
     .tile h2 {
       font-size: 1.4rem;
       font-weight: 600;
@@ -52,13 +46,11 @@
       color: white;
       text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
     }
-
     .tile p {
       font-size: 0.9rem;
       color: #d1d1d1;
       text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
     }
-
     .tile-container {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -67,32 +59,32 @@
       width: 100%;
       max-width: 1200px;
     }
-
     .pause-button {
       position: fixed;
       top: 20px;
       left: 20px;
       background-color: rgba(0, 0, 0, 0.6);
-      color: white;
-      padding: 10px 20px;
-      border-radius: 10px;
+      padding: 0;
+      border: none;
       cursor: pointer;
-      font-size: 1rem;
-      transition: background-color 0.3s ease;
+      border-radius: 10px;
     }
-
-    .pause-button:hover {
-      background-color: rgba(0, 0, 0, 0.8);
+    .pause-button img {
+      display: block;
+      width: 40px;
+      height: 40px;
     }
   </style>
 </head>
 <body class="min-h-screen flex items-center justify-center text-white">
-  <audio id="background-music" loop autoplay>
+  <audio id="background-music" loop preload="auto">
     <source src="/songs/notion.mp3" type="audio/mp3" />
     Your browser does not support the audio element.
   </audio>
 
-  <button class="pause-button" id="pause-button">Pause</button>
+  <button class="pause-button" id="pause-button">
+    <img id="play-pause-icon" src="images/pause.png" alt="Pause" />
+  </button>
 
   <div class="tile-container">
     <a href="/anslee.html" class="tile transition transform hover:scale-105">
@@ -103,23 +95,33 @@
   </div>
 
   <script>
-    const music = document.getElementById('background-music');
-    const pauseButton = document.getElementById('pause-button');
-
-    pauseButton.addEventListener('click', function() {
+    const music = document.getElementById('background-music')
+    const button = document.getElementById('pause-button')
+    const icon = document.getElementById('play-pause-icon')
+    function toggle() {
       if (music.paused) {
-        music.play();
-        pauseButton.textContent = 'Pause';
+        music.play()
+        icon.src = 'images/pause.png'
+        icon.alt = 'Pause'
       } else {
-        music.pause();
-        pauseButton.textContent = 'Play';
+        music.pause()
+        icon.src = 'images/play.png'
+        icon.alt = 'Play'
       }
-    });
-
-    music.oncanplaythrough = function() {
-      music.play();
-    };
+    }
+    button.addEventListener('click', toggle)
+    music.play().catch(() => {
+      const resume = () => {
+        music.play().then(() => {
+          icon.src = 'images/pause.png'
+          icon.alt = 'Pause'
+        })
+        document.removeEventListener('click', resume)
+        document.removeEventListener('touchstart', resume)
+      }
+      document.addEventListener('click', resume)
+      document.addEventListener('touchstart', resume)
+    })
   </script>
 </body>
 </html>
-
