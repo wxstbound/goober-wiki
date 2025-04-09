@@ -10,7 +10,7 @@
       background: linear-gradient(135deg, #1a1a1a, #5c1e1e, #2f0d0d);
       background-size: 400% 400%;
       animation: gradientAnimation 15s ease infinite;
-      font-family: Arial, sans-serif;
+      font-family: 'Helvetica Neue', sans-serif;
     }
 
     @keyframes gradientAnimation {
@@ -19,76 +19,80 @@
       100% { background-position: 0% 50%; }
     }
 
-    .section {
-      padding: 3rem;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(5px);
-      margin-bottom: 2rem;
-    }
-
-    .section-header {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      color: white;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
-      border-bottom: 2px solid #e74c3c;
-      padding-bottom: 0.5rem;
-    }
-
-    .section-content {
-      font-size: 1rem;
-      color: #d1d1d1;
-      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-    }
-
     .nav-links {
       display: flex;
       justify-content: center;
-      gap: 1rem;
-      margin-top: 2rem;
+      gap: 2rem;
+      margin-top: 3rem;
+      padding: 0 2rem;
     }
 
     .nav-links a {
       color: #e74c3c;
+      font-size: 1.1rem;
+      font-weight: 600;
       text-decoration: none;
-      font-weight: bold;
-      padding: 10px 20px;
-      border-radius: 10px;
-      transition: background 0.3s ease;
+      transition: color 0.3s, transform 0.3s ease;
     }
 
     .nav-links a:hover {
-      background-color: rgba(255, 0, 0, 0.2);
+      color: #fff;
+      transform: scale(1.1);
+    }
+
+    .section {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      margin: 4rem 0;
+      padding: 3rem;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    .section:hover {
+      box-shadow: 0 15px 60px rgba(0, 0, 0, 0.7);
+      transform: translateY(-10px);
+    }
+
+    .section-header {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid #e74c3c;
+      padding-bottom: 0.5rem;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+    }
+
+    .section-content {
+      color: #d1d1d1;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
     }
 
     .back-button {
-      display: block;
-      text-align: center;
-      margin-top: 2rem;
-      padding: 10px 20px;
-      background-color: rgba(255, 0, 0, 0.4);
-      border-radius: 10px;
-      color: white;
-      text-decoration: none;
+      display: inline-block;
+      margin-top: 3rem;
+      padding: 12px 25px;
+      font-size: 1.1rem;
       font-weight: bold;
-      transition: background 0.3s ease;
+      color: white;
+      background-color: #e74c3c;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: background-color 0.3s, transform 0.3s ease;
     }
 
     .back-button:hover {
-      background-color: #e74c3c;
+      background-color: #c0392b;
+      transform: scale(1.1);
     }
-
-    .top {
-      margin-top: 50px;
-    }
+  
   </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-start text-white">
-  <div class="top"></div>
-
+<body class="min-h-screen flex flex-col items-center text-white">
   <div class="nav-links">
     <a href="#section1">Section 1</a>
     <a href="#section2">Section 2</a>
@@ -98,24 +102,24 @@
   <div id="section1" class="section">
     <div class="section-header">Section 1</div>
     <div class="section-content">
-      <p>This is the first section. You can add more content here as needed.</p>
-    </div>
-  </div>
-  
-  <div id="section2" class="section">
-    <div class="section-header">Section 2</div>
-    <div class="section-content">
-      <p>This is the second section. Add any additional information or content here.</p>
-    </div>
-  </div>
-  
-  <div id="section3" class="section">
-    <div class="section-header">Section 3</div>
-    <div class="section-content">
-      <p>This is the third section. Continue to provide whatever content you'd like here.</p>
+      <p>This is the first section. You can add more detailed information here, styled in a clean and professional layout. The background gradient and modern design make the content stand out.</p>
     </div>
   </div>
 
-  <a href="#top" class="back-button">Back to Top</a>
+  <div id="section2" class="section">
+    <div class="section-header">Section 2</div>
+    <div class="section-content">
+      <p>This is the second section. You can introduce additional content or features that follow the same structure for a cohesive look throughout the page.</p>
+    </div>
+  </div>
+
+  <div id="section3" class="section">
+    <div class="section-header">Section 3</div>
+    <div class="section-content">
+      <p>This is the third section. Feel free to continue adding information or adjust the layout and design to match your specific needs.</p>
+    </div>
+  </div>
+
+  <a href="https://goober.wiki" class="back-button">Back</a>
 </body>
 </html>
