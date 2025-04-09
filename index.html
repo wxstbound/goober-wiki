@@ -83,7 +83,7 @@
   </audio>
 
   <button class="pause-button" id="pause-button">
-    <img id="play-pause-icon" src="images/pause.png" alt="Pause" />
+    <img id="play-pause-icon" src="images/play" alt="Play" />
   </button>
 
   <div class="tile-container">
@@ -101,11 +101,11 @@
     function toggle() {
       if (music.paused) {
         music.play()
-        icon.src = 'images/pause.png'
+        icon.src = 'images/pause'
         icon.alt = 'Pause'
       } else {
         music.pause()
-        icon.src = 'images/play.png'
+        icon.src = 'images/play'
         icon.alt = 'Play'
       }
     }
@@ -113,7 +113,7 @@
     music.play().catch(() => {
       const resume = () => {
         music.play().then(() => {
-          icon.src = 'images/pause.png'
+          icon.src = 'images/pause'
           icon.alt = 'Pause'
         })
         document.removeEventListener('click', resume)
