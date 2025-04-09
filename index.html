@@ -7,9 +7,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
-      background: linear-gradient(135deg, #3b0a45, #bd3f32, #641c34);
+      background: linear-gradient(135deg, #1a1a1a, #5c1e1e, #2f0d0d);
       background-size: 400% 400%;
-      animation: gradientAnimation 10s ease infinite;
+      animation: gradientAnimation 15s ease infinite;
     }
 
     @keyframes gradientAnimation {
@@ -19,39 +19,58 @@
     }
 
     .tile {
-      background: rgba(0, 0, 0, 0.4);
-      border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
-      padding: 20px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+      padding: 25px;
+      transition: transform 0.4s ease, box-shadow 0.4s ease, filter 0.3s ease;
+      backdrop-filter: blur(5px);
+      transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
     }
 
     .tile:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 8px 30px rgba(255, 0, 0, 0.6);
+      transform: perspective(1000px) rotateY(10deg) rotateX(10deg);
+      box-shadow: 0 15px 60px rgba(255, 0, 0, 0.6);
+      filter: brightness(1.2);
     }
 
     .tile img {
-      border-radius: 10px;
-      max-height: 200px;
+      border-radius: 15px;
+      max-height: 220px;
       object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .tile:hover img {
+      transform: scale(1.05);
     }
 
     .tile h2 {
-      font-size: 1.25rem;
+      font-size: 1.4rem;
       font-weight: 600;
-      margin-top: 15px;
+      margin-top: 20px;
       color: white;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
     }
 
     .tile p {
-      font-size: 0.875rem;
-      color: #e2e2e2;
+      font-size: 0.9rem;
+      color: #d1d1d1;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    }
+
+    .tile-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+      padding: 4rem;
+      width: 100%;
+      max-width: 1200px;
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-center text-white">
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 p-8 w-full max-w-7xl">
+<body class="min-h-screen flex items-center justify-center text-white">
+  <div class="tile-container">
     <a href="/anslee.html" class="tile transition transform hover:scale-105">
       <img src="https://github.com/wxstbound/goober-wiki/blob/main/images/anslee.png?raw=true" alt="Anslee Jo Dickerson" />
       <h2>Anslee Jo Dickerson</h2>
@@ -60,3 +79,4 @@
   </div>
 </body>
 </html>
+
