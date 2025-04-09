@@ -67,9 +67,33 @@
       width: 100%;
       max-width: 1200px;
     }
+
+    .pause-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .pause-button:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
   </style>
 </head>
 <body class="min-h-screen flex items-center justify-center text-white">
+  <audio id="background-music" loop autoplay>
+    <source src="/songs/notion.mp3" type="audio/mp3" />
+    Your browser does not support the audio element.
+  </audio>
+
+  <button class="pause-button" id="pause-button">Pause</button>
+
   <div class="tile-container">
     <a href="/anslee.html" class="tile transition transform hover:scale-105">
       <img src="https://github.com/wxstbound/goober-wiki/blob/main/images/anslee.png?raw=true" alt="Anslee Jo Dickerson" />
@@ -77,6 +101,20 @@
       <p>Biggest bop in Wingo, Kentucky.</p>
     </a>
   </div>
+
+  <script>
+    const music = document.getElementById('background-music');
+    const pauseButton = document.getElementById('pause-button');
+
+    pauseButton.addEventListener('click', function() {
+      if (music.paused) {
+        music.play();
+        pauseButton.textContent = 'Pause';
+      } else {
+        music.pause();
+        pauseButton.textContent = 'Play';
+      }
+    });
+  </script>
 </body>
 </html>
-
