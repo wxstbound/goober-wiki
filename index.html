@@ -7,19 +7,56 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
-      background: linear-gradient(135deg, #0f0c29, #302b63, #8a2387);
+      background: linear-gradient(135deg, #3b0a45, #bd3f32, #641c34);
+      background-size: 400% 400%;
+      animation: gradientAnimation 10s ease infinite;
+    }
+
+    @keyframes gradientAnimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .tile {
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .tile:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 30px rgba(255, 0, 0, 0.6);
+    }
+
+    .tile img {
+      border-radius: 10px;
+      max-height: 200px;
+      object-fit: cover;
+    }
+
+    .tile h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-top: 15px;
+      color: white;
+    }
+
+    .tile p {
+      font-size: 0.875rem;
+      color: #e2e2e2;
     }
   </style>
 </head>
-<body class="min-h-screen flex items-center justify-center text-white">
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6 w-full max-w-7xl">
-    
-    <a href="/anslee.html" class="backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl shadow-lg p-4 transition transform hover:scale-105 hover:ring-2 hover:ring-fuchsia-500">
-      <img src="https://github.com/wxstbound/goober-wiki/blob/main/images/anslee.png?raw=true" class="rounded-xl w-full h-40 object-cover mb-4" />
-      <h2 class="text-xl font-bold text-white">Anslee Jo Dickerson</h2>
-      <p class="text-sm text-gray-300">Biggest bop in Wingo, Kentucky.</p>
+<body class="min-h-screen flex flex-col items-center justify-center text-white">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 p-8 w-full max-w-7xl">
+    <a href="/anslee.html" class="tile transition transform hover:scale-105">
+      <img src="https://github.com/wxstbound/goober-wiki/blob/main/images/anslee.png?raw=true" alt="Anslee Jo Dickerson" />
+      <h2>Anslee Jo Dickerson</h2>
+      <p>Biggest bop in Wingo, Kentucky.</p>
     </a>
-    
   </div>
 </body>
 </html>
