@@ -8,7 +8,7 @@
   <style>
     html{scroll-behavior:smooth}
     body {
-      background: linear-gradient(135deg,#1a1a1a,#5c1e1e,#2f0d0d);
+      background:linear-gradient(135deg,#1a1a1a,#5c1e1e,#2f0d0d);
       background-size:400% 400%;
       animation:gradientAnimation 15s ease infinite;
       font-family:'Helvetica Neue',sans-serif;
@@ -20,6 +20,7 @@
       100%{background-position:0% 50%}
     }
     .section {
+      margin:6rem 0;
       background:rgba(255,255,255,0.1);
       backdrop-filter:blur(10px);
       border-radius:12px;
@@ -62,9 +63,9 @@
     }
   </style>
 </head>
-<body class="flex flex-col items-center py-12">
+<body class="flex flex-col items-center py-16">
   <div class="container mx-auto px-6 max-w-5xl">
-    <div class="flex justify-center space-x-6 mb-12">
+    <div class="flex justify-center space-x-6">
       <a href="#section1" class="btn btn-primary">Section 1</a>
       <a href="#section2" class="btn btn-primary">Section 2</a>
       <a href="#section3" class="btn btn-primary">Section 3</a>
