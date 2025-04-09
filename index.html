@@ -115,6 +115,11 @@
         pauseButton.textContent = 'Play';
       }
     });
+
+    music.oncanplaythrough = function() {
+      music.play();
+    };
   </script>
 </body>
 </html>
+
