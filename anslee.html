@@ -6,19 +6,18 @@
   <title>Anslee Jo Dickerson</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
+    html { scroll-behavior: smooth; }
     body {
       background: linear-gradient(135deg, #1a1a1a, #5c1e1e, #2f0d0d);
       background-size: 400% 400%;
       animation: gradientAnimation 15s ease infinite;
       font-family: 'Helvetica Neue', sans-serif;
     }
-
     @keyframes gradientAnimation {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-
     .nav-links {
       display: flex;
       justify-content: center;
@@ -26,7 +25,6 @@
       margin-top: 3rem;
       padding: 0 2rem;
     }
-
     .nav-links a {
       display: inline-block;
       padding: 10px 20px;
@@ -41,12 +39,10 @@
       width: 150px;
       text-transform: uppercase;
     }
-
     .nav-links a:hover {
       background-color: #c0392b;
       transform: scale(1.1);
     }
-
     .section {
       background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(10px);
@@ -56,12 +52,10 @@
       box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
       transition: box-shadow 0.3s ease, transform 0.3s ease;
     }
-
     .section:hover {
       box-shadow: 0 15px 60px rgba(0, 0, 0, 0.7);
       transform: translateY(-10px);
     }
-
     .section-header {
       font-size: 2.5rem;
       font-weight: 700;
@@ -71,14 +65,12 @@
       padding-bottom: 0.5rem;
       text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
     }
-
     .section-content {
       color: #d1d1d1;
       font-size: 1.1rem;
       line-height: 1.6;
       text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
     }
-
     .back-button {
       display: inline-block;
       margin-top: 3rem;
@@ -91,12 +83,10 @@
       text-decoration: none;
       transition: background-color 0.3s, transform 0.3s ease;
     }
-
     .back-button:hover {
       background-color: #c0392b;
       transform: scale(1.1);
     }
-  
   </style>
 </head>
 <body class="min-h-screen flex flex-col items-center text-white">
@@ -128,6 +118,18 @@
   </div>
 
   <a href="https://goober.wiki" class="back-button">Back</a>
+
+  <script>
+    function equalize() {
+      const secs = document.querySelectorAll('.section');
+      let h = 0;
+      secs.forEach(s => { s.style.height = 'auto'; h = Math.max(h, s.offsetHeight); });
+      secs.forEach(s => s.style.height = h + 'px');
+    }
+    window.addEventListener('load', equalize);
+    window.addEventListener('resize', equalize);
+  </script>
 </body>
 </html>
+
 
