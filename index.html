@@ -61,7 +61,7 @@
     Your browser does not support the audio element.
   </audio>
 
-  <button id="pause-button" class="fixed top-4 left-4 bg-black bg-opacity-60 p-2 rounded-lg">
+  <button id="pause-button" class="fixed top-4 left-4 z-50 bg-black bg-opacity-60 p-2 rounded-lg">
     <img id="play-pause-icon" src="images/play.svg" alt="Play" width="40" height="40" />
   </button>
 
@@ -114,33 +114,33 @@
   </div>
 
   <script>
-    const music = document.getElementById('background-music')
-    const button = document.getElementById('pause-button')
-    const icon = document.getElementById('play-pause-icon')
-    function toggle() {
+    const music = document.getElementById('background-music');
+    const button = document.getElementById('pause-button');
+    const icon = document.getElementById('play-pause-icon');
+
+    function updateIcon() {
       if (music.paused) {
-        music.play()
-        icon.src = 'images/pause.svg'
-        icon.alt = 'Pause'
+        icon.src = 'images/play.svg';
+        icon.alt = 'Play';
       } else {
-        music.pause()
-        icon.src = 'images/play.svg'
-        icon.alt = 'Play'
+        icon.src = 'images/pause.svg';
+        icon.alt = 'Pause';
       }
     }
-    button.addEventListener('click', toggle)
-    music.play().catch(() => {
-      const resume = () => {
-        music.play().then(() => {
-          icon.src = 'images/pause.svg'
-          icon.alt = 'Pause'
-        })
-        document.removeEventListener('click', resume)
-        document.removeEventListener('touchstart', resume)
+
+    button.addEventListener('click', () => {
+      if (music.paused) {
+        music.play();
+      } else {
+        music.pause();
       }
-      document.addEventListener('click', resume)
-      document.addEventListener('touchstart', resume)
-    })
+    });
+
+    music.addEventListener('play', updateIcon);
+    music.addEventListener('pause', updateIcon);
+
+    updateIcon();
   </script>
 </body>
 </html>
+<!-- any1 looking at src i skidded this im 2 lazy 2 make myself this is 100% chatgpt -->
