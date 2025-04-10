@@ -1,9 +1,9 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>YUCK</title>
+  <title>Responsive Gallery</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
@@ -17,81 +17,100 @@
       100% { background-position: 0% 50%; }
     }
     .tile {
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255,255,255,0.1);
       border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
-      padding: 25px;
-      transition: transform 0.4s ease, box-shadow 0.4s ease, filter 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+      padding: 1.5rem;
+      transition: transform .4s ease, box-shadow .4s ease, filter .3s ease;
       backdrop-filter: blur(5px);
-      transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
     }
     .tile:hover {
       transform: perspective(1000px) rotateY(10deg) rotateX(10deg);
-      box-shadow: 0 15px 60px rgba(255, 0, 0, 0.6);
+      box-shadow: 0 15px 60px rgba(255,0,0,0.6);
       filter: brightness(1.2);
     }
     .tile img {
       border-radius: 15px;
-      max-height: 220px;
       object-fit: cover;
-      transition: transform 0.3s ease;
+      display: block;
+      width: 100%;
+      height: auto;
+      transition: transform .3s ease;
     }
     .tile:hover img {
       transform: scale(1.05);
     }
     .tile h2 {
-      font-size: 1.4rem;
+      margin-top: 1rem;
+      font-size: 1.25rem;
       font-weight: 600;
-      margin-top: 20px;
       color: white;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+      text-shadow: 0 2px 4px rgba(0,0,0,0.6);
     }
     .tile p {
-      font-size: 0.9rem;
+      margin-top: .5rem;
+      font-size: .875rem;
       color: #d1d1d1;
-      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-    }
-    .tile-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 2rem;
-      padding: 4rem;
-      width: 100%;
-      max-width: 1200px;
-    }
-    .pause-button {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      background-color: rgba(0, 0, 0, 0.6);
-      padding: 0;
-      border: none;
-      cursor: pointer;
-      border-radius: 10px;
-    }
-    .pause-button img {
-      display: block;
-      width: 40px;
-      height: 40px;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
     }
   </style>
 </head>
-<body class="min-h-screen flex items-center justify-center text-white">
+<body class="min-h-screen flex flex-col items-center justify-center text-white">
   <audio id="background-music" loop preload="auto">
     <source src="/songs/notion.mp3" type="audio/mp3" />
     Your browser does not support the audio element.
   </audio>
 
-  <button class="pause-button" id="pause-button">
-    <img id="play-pause-icon" src="images/play" alt="Play" />
+  <button id="pause-button" class="fixed top-4 left-4 bg-black bg-opacity-60 p-2 rounded-lg">
+    <img id="play-pause-icon" src="images/play.svg" alt="Play" width="40" height="40" />
   </button>
 
-  <div class="tile-container">
-    <a href="/anslee.html" class="tile transition transform hover:scale-105">
-      <img src="https://github.com/wxstbound/goober-wiki/blob/main/images/anslee.png?raw=true" alt="Anslee Jo Dickerson" />
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 p-8 max-w-6xl w-full">
+    <div class="tile">
+      <img
+        src="images/anslee-400w.png"
+        srcset="
+          images/anslee-400w.png   400w,
+          images/anslee-800w.png   800w,
+          images/anslee-1200w.png 1200w
+        "
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        width="1200" height="800"
+        alt="Anslee Jo Dickerson"
+      />
       <h2>Anslee Jo Dickerson</h2>
       <p>Biggest bop in Wingo, KY.</p>
-    </a>
+    </div>
+    <div class="tile">
+      <img
+        src="images/person2-400w.jpg"
+        srcset="
+          images/person2-400w.jpg   400w,
+          images/person2-800w.jpg   800w,
+          images/person2-1200w.jpg 1200w
+        "
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        width="1200" height="800"
+        alt="Person Two"
+      />
+      <h2>Person Two</h2>
+      <p>Description for person two.</p>
+    </div>
+    <div class="tile">
+      <img
+        src="images/person3-400w.jpg"
+        srcset="
+          images/person3-400w.jpg   400w,
+          images/person3-800w.jpg   800w,
+          images/person3-1200w.jpg 1200w
+        "
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        width="1200" height="800"
+        alt="Person Three"
+      />
+      <h2>Person Three</h2>
+      <p>Description for person three.</p>
+    </div>
   </div>
 
   <script>
@@ -101,11 +120,11 @@
     function toggle() {
       if (music.paused) {
         music.play()
-        icon.src = 'images/pause'
+        icon.src = 'images/pause.svg'
         icon.alt = 'Pause'
       } else {
         music.pause()
-        icon.src = 'images/play'
+        icon.src = 'images/play.svg'
         icon.alt = 'Play'
       }
     }
@@ -113,7 +132,7 @@
     music.play().catch(() => {
       const resume = () => {
         music.play().then(() => {
-          icon.src = 'images/pause'
+          icon.src = 'images/pause.svg'
           icon.alt = 'Pause'
         })
         document.removeEventListener('click', resume)
