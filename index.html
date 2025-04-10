@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Responsive Gallery</title>
+  <title>YUCK</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
@@ -12,9 +12,18 @@
       animation: gradientAnimation 15s ease infinite;
     }
     @keyframes gradientAnimation {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
+    }
+    .tile-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+      padding: 4rem;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
     }
     .tile {
       background: rgba(255,255,255,0.1);
@@ -31,10 +40,9 @@
     }
     .tile img {
       border-radius: 15px;
-      object-fit: cover;
-      display: block;
       width: 100%;
       height: auto;
+      object-fit: cover;
       transition: transform .3s ease;
     }
     .tile:hover img {
@@ -42,75 +50,51 @@
     }
     .tile h2 {
       margin-top: 1rem;
-      font-size: 1.25rem;
+      font-size: 1.4rem;
       font-weight: 600;
       color: white;
       text-shadow: 0 2px 4px rgba(0,0,0,0.6);
     }
     .tile p {
       margin-top: .5rem;
-      font-size: .875rem;
+      font-size: .9rem;
       color: #d1d1d1;
       text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    }
+    .pause-button {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      z-index: 50;
+      background-color: rgba(0,0,0,0.6);
+      border: none;
+      padding: 0.25rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+    .pause-button img {
+      display: block;
+      width: 40px;
+      height: 40px;
     }
   </style>
 </head>
 <body class="min-h-screen flex flex-col items-center justify-center text-white">
+
   <audio id="background-music" loop preload="auto">
     <source src="/songs/notion.mp3" type="audio/mp3" />
-    Your browser does not support the audio element.
   </audio>
 
-  <button id="pause-button" class="fixed top-4 left-4 z-50 bg-black bg-opacity-60 p-2 rounded-lg">
-    <img id="play-pause-icon" src="images/play.svg" alt="Play" width="40" height="40" />
+  <button id="pause-button" class="pause-button" type="button">
+    <img id="play-pause-icon" src="images/play.png" alt="Play" />
   </button>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 p-8 max-w-6xl w-full">
-    <div class="tile">
-      <img
-        src="images/anslee-400w.png"
-        srcset="
-          images/anslee-400w.png   400w,
-          images/anslee-800w.png   800w,
-          images/anslee-1200w.png 1200w
-        "
-        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-        width="1200" height="800"
-        alt="Anslee Jo Dickerson"
-      />
+  <div class="tile-container">
+    <a href="/anslee.html" class="tile">
+      <img src="images/anslee.png" alt="Anslee Jo Dickerson" />
       <h2>Anslee Jo Dickerson</h2>
       <p>Biggest bop in Wingo, KY.</p>
-    </div>
-    <div class="tile">
-      <img
-        src="images/person2-400w.jpg"
-        srcset="
-          images/person2-400w.jpg   400w,
-          images/person2-800w.jpg   800w,
-          images/person2-1200w.jpg 1200w
-        "
-        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-        width="1200" height="800"
-        alt="Person Two"
-      />
-      <h2>Person Two</h2>
-      <p>Description for person two.</p>
-    </div>
-    <div class="tile">
-      <img
-        src="images/person3-400w.jpg"
-        srcset="
-          images/person3-400w.jpg   400w,
-          images/person3-800w.jpg   800w,
-          images/person3-1200w.jpg 1200w
-        "
-        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-        width="1200" height="800"
-        alt="Person Three"
-      />
-      <h2>Person Three</h2>
-      <p>Description for person three.</p>
-    </div>
+    </a>
   </div>
 
   <script>
@@ -119,28 +103,17 @@
     const icon = document.getElementById('play-pause-icon');
 
     function updateIcon() {
-      if (music.paused) {
-        icon.src = 'images/play.svg';
-        icon.alt = 'Play';
-      } else {
-        icon.src = 'images/pause.svg';
-        icon.alt = 'Pause';
-      }
+      icon.src = music.paused ? 'images/play.png' : 'images/pause.png';
+      icon.alt = music.paused ? 'Play' : 'Pause';
     }
 
     button.addEventListener('click', () => {
-      if (music.paused) {
-        music.play();
-      } else {
-        music.pause();
-      }
+      music.paused ? music.play() : music.pause();
     });
 
-    music.addEventListener('play', updateIcon);
+    music.addEventListener('play',  updateIcon);
     music.addEventListener('pause', updateIcon);
-
     updateIcon();
   </script>
 </body>
 </html>
-<!-- any1 looking at src i skidded this im 2 lazy 2 make myself this is 100% chatgpt -->
